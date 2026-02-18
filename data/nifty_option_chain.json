@@ -1,0 +1,77 @@
+{
+  "records": {
+    "underlyingValue": 22450.5,
+    "data": [
+      {
+        "strikePrice": 22000,
+        "expiryDate": "2026-03-27",
+        "CE": {
+          "lastPrice": 620.5,
+          "impliedVolatility": 13.2,
+          "openInterest": 152340
+        },
+        "PE": {
+          "lastPrice": 42.1,
+          "impliedVolatility": 14.8,
+          "openInterest": 231220
+        }
+      },
+      {
+        "strikePrice": 22200,
+        "expiryDate": "2026-03-27",
+        "CE": {
+          "lastPrice": 470.2,
+          "impliedVolatility": 12.9,
+          "openInterest": 182210
+        },
+        "PE": {
+          "lastPrice": 65.4,
+          "impliedVolatility": 14.2,
+          "openInterest": 210445
+        }
+      },
+      {
+        "strikePrice": 22400,
+        "expiryDate": "2026-03-27",
+        "CE": {
+          "lastPrice": 320.8,
+          "impliedVolatility": 12.5,
+          "openInterest": 245110
+        },
+        "PE": {
+          "lastPrice": 98.7,
+          "impliedVolatility": 13.9,
+          "openInterest": 198332
+        }
+      },
+      {
+        "strikePrice": 22600,
+        "expiryDate": "2026-03-27",
+        "CE": {
+          "lastPrice": 195.4,
+          "impliedVolatility": 12.7,
+          "openInterest": 264550
+        },
+        "PE": {
+          "lastPrice": 145.2,
+          "impliedVolatility": 13.4,
+          "openInterest": 176540
+        }
+      },
+      {
+        "strikePrice": 22800,
+        "expiryDate": "2026-03-27",
+        "CE": {
+          "lastPrice": 108.9,
+          "impliedVolatility": 13.1,
+          "openInterest": 201340
+        },
+        "PE": {
+          "lastPrice": 215.8,
+          "impliedVolatility": 13.0,
+          "openInterest": 162120
+        }
+      }
+    ]
+  }
+}
