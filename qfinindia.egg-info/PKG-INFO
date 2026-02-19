@@ -1,3 +1,16 @@
+Metadata-Version: 2.4
+Name: qfinindia
+Version: 0.2.0
+Summary: Model-free implied distribution and volatility analytics for NSE options
+Author: Dhruv Maheshwari
+Project-URL: Homepage, https://github.com/Dhruv15112004/QFinIndia
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+Requires-Dist: numpy
+Requires-Dist: pandas
+Requires-Dist: scipy
+Requires-Dist: matplotlib
+
 # QFinIndia
 
 QFinIndia is an open-source quantitative finance library that extracts 

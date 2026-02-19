@@ -4,17 +4,19 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "qfinindia"
-version = "0.1.0"
+version = "0.3.0"
 description = "Model-free implied distribution and volatility analytics for NSE options"
-authors = [{name="Dhruv Maheshwari"}]
+authors = [
+  {name = "Dhruv Maheshwari"}
+]
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
-    "numpy",
-    "pandas",
-    "scipy",
-    "matplotlib"
+  "numpy",
+  "pandas",
+  "scipy",
+  "matplotlib"
 ]
 
 [project.urls]
-Homepage = "https://github.com/yourusername/qfinindia"
+Homepage = "https://github.com/Dhruv15112004/QFinIndia"

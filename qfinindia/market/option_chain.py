@@ -7,6 +7,32 @@ REQUIRED_COLUMNS = {"type", "strike", "expiry", "price"}
 OPTION_TYPES = {"C", "P"}
 
 
+# ---------- Helpers ----------
+
+def _normalize_option_types(series: pd.Series) -> pd.Series:
+    """
+    Normalize option type labels to C/P.
+    Accepts: call, put, c, p, CE, PE, Call, Put, etc.
+    """
+    mapping = {
+        "call": "C",
+        "put": "P",
+        "c": "C",
+        "p": "P",
+        "ce": "C",
+        "pe": "P",
+    }
+
+    normalized = (
+        series.astype(str)
+        .str.strip()
+        .str.lower()
+        .map(mapping)
+    )
+
+    return normalized
+
+
 @dataclass
 class OptionChain:
     data: pd.DataFrame
@@ -17,8 +43,16 @@ class OptionChain:
 
     @classmethod
     def from_dataframe(cls, df: pd.DataFrame, underlying=None, timestamp=None):
+        df = df.copy()
+
+        # normalize option types BEFORE validation
+        df["type"] = _normalize_option_types(df["type"])
+
+        # normalize expiry to datetime
+        df["expiry"] = pd.to_datetime(df["expiry"])
+
         cls._validate_schema(df)
-        return cls(df.copy(), underlying, timestamp)
+        return cls(df, underlying, timestamp)
 
     @classmethod
     def from_csv(cls, path: str, **kwargs):
@@ -34,7 +68,7 @@ class OptionChain:
     def from_nse(cls, json_data: dict):
         from qfinindia.data.nse import parse_nse_chain
         df, underlying, timestamp = parse_nse_chain(json_data)
-        return cls(df, underlying, timestamp)
+        return cls.from_dataframe(df, underlying, timestamp)
 
     # ---------- Validation ----------
 
@@ -44,10 +78,15 @@ class OptionChain:
         if missing:
             raise ValueError(f"Missing required columns: {missing}")
 
-        if not set(df["type"].unique()).issubset(OPTION_TYPES):
-            raise ValueError("Option type must be C or P")
+        if df["type"].isna().any():
+            bad = df.loc[df["type"].isna(), "type"]
+            raise ValueError(
+                f"Invalid option type values found: {bad.unique()} "
+                f"(allowed: call/put/CE/PE/c/p)"
+            )
 
-        df["expiry"] = pd.to_datetime(df["expiry"])
+        if not set(df["type"].unique()).issubset(OPTION_TYPES):
+            raise ValueError("Option type must normalize to C or P")
 
     # ---------- Filters ----------
 
